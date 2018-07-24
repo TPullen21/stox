@@ -1,0 +1,34 @@
+.Stock {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #000;
+    text-align: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+.StockTicker {
+    font-size: 36px;
+    /* font-weight: bold; */
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.CurrentPrice {
+    font-size: 24px;
+}
+
+.OpenPrice {
+    font-size: 18px;
+}
+
+.PercGain {
+    font-size: 24px;
+}
+
+.Positive {
+    color: seagreen;
+}
+
+.Negative {
+    color: firebrick
+}

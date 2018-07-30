@@ -1,17 +1,76 @@
-import React from 'react';
+import React, {Component} from 'react';
 
+import axios from '../../axios/axios-iextrading';
 import Stock from './Stock/Stock';
 import './Stocks.css'
 
-const stocks = () => {
+class Stocks extends Component {
 
-    return (
-        <div className="Stocks">
-            <Stock tickerSymbol="TSLA" openPrice="300" currentPrice="309"/>
-            <Stock tickerSymbol="GOOG" openPrice="1050" currentPrice="1000"/>
-            <Stock tickerSymbol="AMZN" openPrice="1780" currentPrice="1830"/>
-        </div>
-    );
-};
+    state = {
+        stocks: ["TSLA", "AAPL", "AMZN"],
+        stockDetail: []
+    }
 
-export default stocks;
+    componentWillMount() {
+
+        this.getStockData();
+
+        try {
+            setInterval(async () => {   
+                this.getStockData();        
+            }, 5000);
+          } catch(err) {
+            console.log(err);
+          }
+    }
+
+    getStockData = () => {   
+        axios.get('/batch', {params: {symbols: this.state.stocks.join(',')}})
+            .then(response => this.processRealTimeStockData(response.data))
+            .catch(err => console.log(err));
+    }
+
+    processRealTimeStockData = data => {
+
+        const stockDetail = [];
+
+        if (this.state.stocks.length) {
+
+            this.state.stocks.forEach(ticker => {
+
+                const datum = data[ticker];
+
+                if  (datum && datum.quote) {
+
+                    stockDetail.push({
+                        ticker: ticker,
+                        openPrice: datum.quote.close,
+                        latestPrice: datum.quote.latestPrice
+                    });
+
+                }
+            });
+
+        }
+
+        this.setState({stockDetail: stockDetail});
+
+    }
+
+    render() {
+
+        let stocks = null;
+
+        if(this.state.stockDetail) {
+            stocks = this.state.stockDetail.map(stock => {
+                return <Stock key={stock.ticker} tickerSymbol={stock.ticker} openPrice={stock.openPrice} latestPrice={stock.latestPrice}/>
+            });
+        }
+
+        return (<div className="Stocks">
+            {stocks}
+        </div>)
+    }
+}
+
+export default Stocks;

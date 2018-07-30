@@ -11,17 +11,17 @@ class Stocks extends Component {
         stockDetail: []
     }
 
-    componentWillMount() {
+    myInterval = null;
+    isIntervalRunning = false;
+
+    componentDidMount() {
 
         this.getStockData();
 
-        try {
-            setInterval(async () => {   
-                this.getStockData();        
-            }, 5000);
-          } catch(err) {
-            console.log(err);
-          }
+        this.isIntervalRunning = true;
+        this.interval = setInterval(async () => {this.getStockData()}, 5000);
+
+        this.setWindowEventHandlers();
     }
 
     getStockData = () => {   
@@ -57,6 +57,25 @@ class Stocks extends Component {
 
     }
 
+    setWindowEventHandlers = () => {
+
+        window.addEventListener("focus", event => {
+            console.log('startingInterval');
+            this.getStockData();
+            if  (!this.isIntervalRunning) {
+                this.isIntervalRunning = true;
+                this.interval = setInterval(async () => {this.getStockData()}, 5000);
+            }
+        });
+        
+        window.addEventListener("blur", event => {
+            console.log('clearingInterval');
+            clearInterval(this.interval);
+            this.isIntervalRunning = false;
+        });
+
+    }
+
     render() {
 
         let stocks = null;
@@ -67,9 +86,11 @@ class Stocks extends Component {
             });
         }
 
-        return (<div className="Stocks">
-            {stocks}
-        </div>)
+        return (
+            <div className="Stocks">
+                {stocks}
+            </div>
+        );
     }
 }
 

@@ -1,0 +1,9 @@
+.Security {
+    border: 3px solid #4885a8;
+    margin: 20px 0;
+}
+
+.Security .Name,
+.Security .StockExchange {
+    font-size: 24px;
+}

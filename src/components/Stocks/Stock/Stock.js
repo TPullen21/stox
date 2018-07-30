@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './Stock.css'
+import './Stock.css'
 
 const stock = (props) => {
 

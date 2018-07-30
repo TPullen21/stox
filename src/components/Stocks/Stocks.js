@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Stock from './Stock/Stock';
-import classes from './Stocks.css'
+import './Stocks.css'
 
 const stocks = () => {
 

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Stocks from './components/Stocks/Stocks';
+import AddStock from './components/AddStock/AddStock';
 
 class App extends Component {
   render() {
@@ -12,7 +13,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Stox</h1>
         </header>
-        <Stocks />
+        <AddStock />
       </div>
     );
   }

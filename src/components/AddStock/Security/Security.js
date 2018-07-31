@@ -1,16 +1,43 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import './Security.css'
 
-const security = (props) => {
+class Security extends Component {
 
-    return (
-        <div className="Security" onClick={props.clicked}>
-            <div className="Ticker">{props.ticker}</div>
-            <div className="Name">{props.name}</div>
-            <div className="StockExchange">{props.stockExchange}</div>
-        </div>
-    );
-};
+    state = {
+        stored: false
+    }
 
-export default security;
+    componentDidMount() {
+        if(this.props.stored) {
+            this.setState({stored: true});
+        }
+    }
+
+    securityClicked = () => {
+
+        this.setState({stored: !this.state.stored});
+        this.props.clicked();
+    }
+
+
+    render () {
+
+        const securityClassName = ['Security'];
+    
+        if(this.state.stored) {
+            securityClassName.push('Stored');
+        }
+
+        return (
+            <div className={securityClassName.join(' ')} onClick={this.securityClicked}>
+                <div className="Ticker">{this.props.ticker}</div>
+                <div className="Name">{this.props.name}</div>
+                <div className="StockExchange">{this.props.stockExchange}</div>
+            </div>
+        );
+
+    }
+}
+
+export default Security;

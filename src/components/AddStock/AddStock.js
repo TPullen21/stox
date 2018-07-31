@@ -26,21 +26,26 @@ class AddStock extends Component {
         this.loadRelatedTickers = _.debounce(this.loadRelatedTickers, 300);
     }
 
-    securities = [];;
+    securities = [];
+    storedSecurities = [];
 
     componentDidMount() {
         firebase.get('securities.json')
             .then(response => this.securities = response.data)
             .catch(err => console.log(err));
+
+        this.storedSecurities = LocalStorage.getStocks();
     }
 
     stockClickedHandler = (ticker, name) => {
         if (_.includes(LocalStorage.getStocks(), ticker)) {
             LocalStorage.removeStock(ticker);
+            _.remove(this.storedSecurities, ticker);
             NotificationManager.warning('Removed ' + name, ticker, 2500);
         }
         else {
             LocalStorage.addStock(ticker);
+            this.storedSecurities.push(ticker);
             NotificationManager.success('Added ' + name, ticker, 2500);
         }
     };
@@ -76,6 +81,7 @@ class AddStock extends Component {
                     name={sec.securityName}
                     ticker={sec.ticker}
                     stockExchange={sec.stockExchange}
+                    stored={_.includes(this.storedSecurities, sec.ticker)}
                     clicked={() => this.stockClickedHandler(sec.ticker, sec.securityName)} />
             });
         }

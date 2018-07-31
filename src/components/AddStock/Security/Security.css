@@ -7,10 +7,16 @@
     position: relative;
 }
 
-.Security:hover {
+.Security:hover,
+.Stored {
     color: white;
     background-color: #4885a8;
 
+}
+
+.Stored:hover {
+    background-color: crimson;
+    border: 3px solid crimson;
 }
 
 .Security .Name,
@@ -32,6 +38,10 @@
     height: 20px;
     width: 3px;
     right: 12px;
+}
+
+.Stored:before {
+    display: none;
 }
 
 .Security:after {

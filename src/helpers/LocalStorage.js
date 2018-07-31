@@ -2,20 +2,20 @@ import _ from 'lodash';
 
 class LocalStorage {
 
-    getStocks = () => {
+    static getStocks()  {
         const stocksFromStorage = localStorage.getItem("stocks");
         return stocksFromStorage ? stocksFromStorage.split(',') : [];
     }
 
-    addStock = ticker => {
+    static addStock (ticker) {
         
         const stocks = this.getStocks();
 
         stocks.push(ticker);
-        localStorage.setItem("stocks", stocksToAdd);
+        localStorage.setItem("stocks", stocks);
     }
 
-    removeStock = ticker => {
+    static removeStock (ticker) {
         
         const stocks = this.getStocks();
 

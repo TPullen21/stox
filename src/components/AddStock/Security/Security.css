@@ -4,6 +4,7 @@
     margin: 20px 0;
     cursor: pointer;
     padding: 10px;
+    position: relative;
 }
 
 .Security:hover {
@@ -15,4 +16,26 @@
 .Security .Name,
 .Security .StockExchange {
     font-size: 24px;
+}
+	
+.Security:after,
+.Security:before {
+    content: "";
+    display: block;
+    background-color: white;
+    position: absolute;
+    top: 20px;
+    transform: translate(-50%, -50%);
+}
+
+.Security:before {
+    height: 20px;
+    width: 3px;
+    right: 12px;
+}
+
+.Security:after {
+    height: 3px;
+    width: 20px;
+    right: -5px;
 }

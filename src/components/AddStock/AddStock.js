@@ -10,7 +10,9 @@ import './AddStock.css'
 class AddStock extends Component {
 
     constructor(props) {
+
         super(props);
+
         this.state = {
             textInput: '',
             filteredSecurities: []
@@ -19,14 +21,8 @@ class AddStock extends Component {
         this.loadRelatedTickers = this.loadRelatedTickers.bind(this);
       
         // Debounce
-        this.loadRelatedTickers = _.debounce(this.loadRelatedTickers, 1500);
-      }
-      
-    // state = {
-    //     textInput: ''
-    // };
-
-    
+        this.loadRelatedTickers = _.debounce(this.loadRelatedTickers, 300);
+    }
 
     securities = [];;
 
@@ -58,14 +54,17 @@ class AddStock extends Component {
     };
 
     loadRelatedTickers() {
+
+        if (!this.state.textInput.length) {
+            this.setState({filteredSecurities: []});
+            return;
+        }
         
         const filteredSecuritiesObject = _.pickBy(this.securities, (val, key) => {
             return key.toUpperCase().includes(this.state.textInput.toUpperCase());
         });
 
         this.setState({filteredSecurities: _.values(filteredSecuritiesObject).slice(0, 10)});
-
-        console.log(this.state.filteredSecurities);
     }
 
     render () {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import {NotificationManager} from 'react-notifications';
 import _ from 'lodash';
 
 import firebase from '../../axios/axios-firebase';
@@ -58,16 +58,45 @@ class AddStock extends Component {
 
     loadRelatedTickers() {
 
-        if (!this.state.textInput.length) {
+        // Order it in the format:
+        // Exact Match
+        // Starts With Matches
+        // Remaining 'LIKE' Matches
+        const ticker = this.state.textInput;
+
+        if (!ticker.length) {
             this.setState({filteredSecurities: []});
             return;
         }
         
-        const filteredSecuritiesObject = _.pickBy(this.securities, (val, key) => {
-            return key.toUpperCase().includes(this.state.textInput.toUpperCase());
+        const fsIncludesTicker = _.pickBy(this.securities, (val, key) => {
+            return key.toUpperCase().includes(ticker);
         });
 
-        this.setState({filteredSecurities: _.values(filteredSecuritiesObject).slice(0, 10)});
+        const filteredSecurities = [];
+
+        if (fsIncludesTicker[ticker])
+            filteredSecurities.push(fsIncludesTicker[ticker]);
+
+        const filteredSecuritiesStartsWithTicker = _.pickBy(this.securities, (val, key) => {
+            return key.toUpperCase().startsWith(ticker) && key.toUpperCase() !== ticker;
+        });
+
+        const fsStartsWithTickerArr = _.values(filteredSecuritiesStartsWithTicker);
+
+        filteredSecurities.push(...fsStartsWithTickerArr);
+
+        if (filteredSecurities.length >= 10) {
+            this.setState({filteredSecurities: filteredSecurities.slice(0, 10)});
+            return;
+        }
+
+        const fsRemainingTickers = _.xor(_.values(fsIncludesTicker), fsStartsWithTickerArr);
+        _.remove(fsRemainingTickers, filteredSecurities[0]);
+
+        filteredSecurities.push(...fsRemainingTickers);
+
+        this.setState({filteredSecurities: filteredSecurities.slice(0, 10)});
     }
 
     render () {

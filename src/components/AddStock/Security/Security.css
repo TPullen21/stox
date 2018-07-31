@@ -7,14 +7,14 @@
     position: relative;
 }
 
-.Security:hover,
+.NoTouching:hover,
 .Stored {
     color: white;
     background-color: #4885a8;
 
 }
 
-.Stored:hover {
+.NoTouching.Stored:hover {
     background-color: crimson;
     border: 3px solid crimson;
 }

@@ -28,6 +28,7 @@ class AddStock extends Component {
 
     securities = [];
     storedSecurities = [];
+    currentDeviceTouchEnabled = ("ontouchstart" in document.documentElement);
 
     componentDidMount() {
         firebase.get('securities.json')
@@ -109,6 +110,7 @@ class AddStock extends Component {
                     key={sec.ticker}
                     name={sec.securityName}
                     ticker={sec.ticker}
+                    touchEnabled={this.currentDeviceTouchEnabled}
                     stockExchange={sec.stockExchange}
                     stored={_.includes(this.storedSecurities, sec.ticker)}
                     clicked={() => this.stockClickedHandler(sec.ticker, sec.securityName)} />

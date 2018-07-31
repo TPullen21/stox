@@ -100,9 +100,12 @@ class Stocks extends Component {
         }
 
         return (
-            <div className="Stocks">
-                {stocks}
-            </div>
+            <React.Fragment>
+                <div className="Stocks">
+                    {stocks}
+                </div>
+                <footer className="Footer">Powered by iextrading.com</footer>
+            </React.Fragment>
         );
     }
 }

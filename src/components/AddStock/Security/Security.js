@@ -25,9 +25,8 @@ class Security extends Component {
 
         const securityClassName = ['Security'];
     
-        if(this.state.stored) {
-            securityClassName.push('Stored');
-        }
+        if(this.state.stored)           securityClassName.push('Stored');
+        if(!this.props.touchEnabled)    securityClassName.push('NoTouching');
 
         return (
             <div className={securityClassName.join(' ')} onClick={this.securityClicked}>

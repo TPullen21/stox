@@ -1,6 +1,14 @@
 .Security {
     border: 3px solid #4885a8;
+    border-radius: 15px;
     margin: 20px 0;
+    cursor: pointer;
+}
+
+.Security:hover {
+    color: white;
+    background-color: #4885a8;
+
 }
 
 .Security .Name,

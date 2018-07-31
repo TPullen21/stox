@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 
 import axios from '../../axios/axios-iextrading';
+import LocalStorage from '../../helpers/LocalStorage';
 import Stock from './Stock/Stock';
 import './Stocks.css'
 
 class Stocks extends Component {
 
     state = {
-        stocks: ["TSLA", "AAPL", "AMZN"],
+        stocks: [],
         stockDetail: []
     }
 
@@ -16,16 +17,28 @@ class Stocks extends Component {
 
     componentDidMount() {
 
-        this.getStockData();
+        const stocks = LocalStorage.getStocks();
 
-        this.isIntervalRunning = true;
-        this.interval = setInterval(async () => {this.getStockData()}, 5000);
+        this.setState({stocks: stocks});
 
-        this.setWindowEventHandlers();
+        if(stocks.length) {
+
+            this.getStockData(stocks);
+    
+            this.isIntervalRunning = true;
+            this.interval = setInterval(async () => {this.getStockData()}, 5000);
+    
+            this.setWindowEventHandlers();
+
+        }
     }
 
-    getStockData = () => {   
-        axios.get('/batch', {params: {symbols: this.state.stocks.join(',')}})
+    getStockData = stocks => {   
+        
+        console.log(this.state.stocks);
+        console.log(stocks);
+        
+        axios.get('/batch', {params: {symbols: (stocks || this.state.stocks).join(',')}})
             .then(response => this.processRealTimeStockData(response.data))
             .catch(err => console.log(err));
     }

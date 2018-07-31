@@ -4,6 +4,7 @@ import _ from 'lodash';
 import firebase from '../../axios/axios-firebase';
 import Truncate from '../../helpers/truncate';
 import Security from './Security/Security';
+import LocalStorage from '../../helpers/LocalStorage';
 
 import './AddStock.css'
 
@@ -35,16 +36,7 @@ class AddStock extends Component {
     addStockHandler = event => {
         event.preventDefault();
 
-        const stocksFromStorage = localStorage.getItem("stocks");
-
-        let stocksToAdd = [];
-
-        if (stocksFromStorage) {
-            stocksToAdd = stocksFromStorage.split(',');
-        }
-
-        stocksToAdd.push(this.state.textInput);
-        localStorage.setItem("stocks", stocksToAdd);
+        LocalStorage.addStock(this.state.textInput);
     };
 
     stockInputChangedHandler = event => {

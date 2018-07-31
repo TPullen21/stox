@@ -3,6 +3,7 @@
     border-radius: 15px;
     margin: 20px 0;
     cursor: pointer;
+    padding: 10px;
 }
 
 .Security:hover {

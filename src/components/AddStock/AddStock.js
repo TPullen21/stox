@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 import _ from 'lodash';
 
 import firebase from '../../axios/axios-firebase';
@@ -33,10 +34,9 @@ class AddStock extends Component {
             .catch(err => console.log(err));
     }
 
-    addStockHandler = event => {
-        event.preventDefault();
-
-        LocalStorage.addStock(this.state.textInput);
+    addStockHandler = (ticker, name) => {
+        LocalStorage.addStock(ticker);
+        NotificationManager.success('Added ' + name, ticker, 1500);
     };
 
     stockInputChangedHandler = event => {
@@ -65,7 +65,12 @@ class AddStock extends Component {
 
         if(this.state.filteredSecurities.length) {
             securities = this.state.filteredSecurities.map(sec => {
-                return <Security key={sec.ticker} name={sec.securityName} ticker={sec.ticker} stockExchange={sec.stockExchange} />
+                return <Security
+                    key={sec.ticker}
+                    name={sec.securityName}
+                    ticker={sec.ticker}
+                    stockExchange={sec.stockExchange}
+                    clicked={() => this.addStockHandler(sec.ticker, sec.securityName)} />
             });
         }
 
@@ -77,9 +82,6 @@ class AddStock extends Component {
                         placeholder="ticker"
                         value={this.state.textInput}
                         onChange={this.stockInputChangedHandler} />
-                </div>
-                <div className="ticker-button active">
-                    <div onClick={this.addStockHandler}><span>Add</span></div>
                 </div>
 
                 {securities}

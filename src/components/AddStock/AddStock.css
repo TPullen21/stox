@@ -24,6 +24,7 @@
     background: transparent;
     color: #4885a8;
     outline: 0;
+    margin-bottom: 30px;
 }
 
 .AddStock input.shake {
@@ -35,38 +36,6 @@
 
 .AddStock input::placeholder {
     color: #94bbd1;
-}
-
-.ticker-button {
-    position: relative;
-    display: block;
-    height: 50px;
-    margin: 20px 0;
-    text-align: center;
-    opacity: 0.3;
-    display: flex;
-}
-
-.ticker-button.active {
-    opacity: 1;
-    cursor: pointer;
-}
-
-.ticker-button div {
-    float: left;
-    width: 33.33%;
-    margin: 0 auto;
-}
-
-.ticker-button div span {
-    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.25);
-    padding: 10px 5px;
-    width: 95%;
-    display: inline-block;
-    border-radius: 30px;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
 }
 
 #ticker-input input {

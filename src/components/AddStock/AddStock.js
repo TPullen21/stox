@@ -34,9 +34,15 @@ class AddStock extends Component {
             .catch(err => console.log(err));
     }
 
-    addStockHandler = (ticker, name) => {
-        LocalStorage.addStock(ticker);
-        NotificationManager.success('Added ' + name, ticker, 1500);
+    stockClickedHandler = (ticker, name) => {
+        if (_.includes(LocalStorage.getStocks(), ticker)) {
+            LocalStorage.removeStock(ticker);
+            NotificationManager.warning('Removed ' + name, ticker, 2500);
+        }
+        else {
+            LocalStorage.addStock(ticker);
+            NotificationManager.success('Added ' + name, ticker, 2500);
+        }
     };
 
     stockInputChangedHandler = event => {
@@ -70,7 +76,7 @@ class AddStock extends Component {
                     name={sec.securityName}
                     ticker={sec.ticker}
                     stockExchange={sec.stockExchange}
-                    clicked={() => this.addStockHandler(sec.ticker, sec.securityName)} />
+                    clicked={() => this.stockClickedHandler(sec.ticker, sec.securityName)} />
             });
         }
 

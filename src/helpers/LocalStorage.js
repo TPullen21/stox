@@ -19,11 +19,11 @@ class LocalStorage {
         
         const stocks = this.getStocks();
 
-        const alteredStocks = _.remove(stocks, stock => {
+        _.remove(stocks, stock => {
             return ticker === stock;
         });
 
-        localStorage.setItem("stocks", alteredStocks);
+        localStorage.setItem("stocks", stocks);
     }
 
 }

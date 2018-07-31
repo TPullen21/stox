@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
@@ -12,8 +13,22 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Stox</h1>
+
+          <div className="Navlinks">
+            <NavLink 
+                to={'/'}
+                exact={true}
+                >Home</NavLink>
+            <NavLink 
+                to={'/add-stock'}
+                exact={true}
+                >Add</NavLink>
+          </div>
         </header>
-        <AddStock />
+        <Switch>
+          <Route path="/add-stock" exact component={AddStock} />
+          <Route path="/" exact component={Stocks} />
+        </Switch>
       </div>
     );
   }

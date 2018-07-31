@@ -26,3 +26,13 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.Navlinks {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.Navlinks a:active,
+.Navlinks a:visited {
+  color: white;
+}

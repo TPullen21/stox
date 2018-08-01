@@ -1,0 +1,23 @@
+.News {
+    text-align: left;
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    margin: 10px;
+    border: 2px solid #4885a8;
+    padding: 10px;
+}
+
+.Source {
+    font-size: 11px;
+    color: #999;
+    margin-bottom: 6px;
+}
+
+.Headline {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.Summary {
+    font-size: 14px;
+    margin-bottom: 4px;
+}

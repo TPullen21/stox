@@ -7,6 +7,7 @@ import 'react-notifications/lib/notifications.css';
 
 import Stocks from './components/Stocks/Stocks';
 import AddStock from './components/AddStock/AddStock';
+import StockDetail from './components/StockDetail/StockDetail'
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
         </header>
         <Switch>
           <Route path="/add-stock" exact component={AddStock} />
+          <Route path="/:id" component={StockDetail} />
           <Route path="/" exact component={Stocks} />
         </Switch>
         <NotificationContainer/>

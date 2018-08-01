@@ -26,9 +26,9 @@ class Stocks extends Component {
             this.getStockData(stocks);
     
             this.isIntervalRunning = true;
-            this.interval = setInterval(async () => {this.getStockData()}, 5000);
+            //this.interval = setInterval(async () => {this.getStockData()}, 5000);
     
-            this.setWindowEventHandlers();
+            //this.setWindowEventHandlers();
 
         }
     }
@@ -38,7 +38,7 @@ class Stocks extends Component {
         console.log(this.state.stocks);
         console.log(stocks);
         
-        axios.get('/batch', {params: {symbols: (stocks || this.state.stocks).join(',')}})
+        axios.get('/market/batch', {params: {symbols: (stocks || this.state.stocks).join(',')}})
             .then(response => this.processRealTimeStockData(response.data))
             .catch(err => console.log(err));
     }

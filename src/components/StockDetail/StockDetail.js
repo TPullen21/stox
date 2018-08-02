@@ -5,6 +5,8 @@ import axios from '../../axios/axios-iextrading';
 import Stock from '../Stocks/Stock/Stock';
 import News from './News/News';
 
+import './StockDetail.css';
+
 class StockDetail extends Component {
 
     state = {
@@ -49,7 +51,7 @@ class StockDetail extends Component {
 
         return (
             <div className="StockDetail">
-                {stock}
+                <div className="StockContainer">{stock}</div>
                 <div className="Chart"></div>
                 <div className="NewsItems">
                     {news}

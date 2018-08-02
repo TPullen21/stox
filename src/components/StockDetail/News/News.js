@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'react-moment';
 
 import './News.css'
 
@@ -16,7 +17,7 @@ const news = (props) => {
 
     return (
         <div className="News">
-            <div className="Source">{props.source} • {relativeTime}</div>
+            <div className="Source">{props.source} • <Moment fromNow>{relativeTime}</Moment></div>
             <div className="Headline">{props.headline}</div>
             <div className="Summary">{summary}</div>
             <div className="ArticleUrl">{articleUrl}</div>

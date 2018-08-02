@@ -4,6 +4,7 @@ import axios from '../../axios/axios-iextrading';
 
 import Stock from '../Stocks/Stock/Stock';
 import News from './News/News';
+import Footer from './Footer/Footer';
 
 import './StockDetail.css';
 
@@ -40,6 +41,7 @@ class StockDetail extends Component {
         }
 
         let stock = null;
+        let footer = null;
 
         if (this.state.stockDetail.quote) {
             stock = <Stock 
@@ -47,6 +49,9 @@ class StockDetail extends Component {
                         latestPrice={this.state.stockDetail.quote.latestPrice}
                         openPrice={this.state.stockDetail.quote.close}
                     />
+
+            footer = <Footer
+                        companyName={this.state.stockDetail.quote.companyName} />
         }
 
         return (
@@ -56,6 +61,7 @@ class StockDetail extends Component {
                 <div className="NewsItems">
                     {news}
                 </div>
+                {footer}
             </div>
         );
     }

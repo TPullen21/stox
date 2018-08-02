@@ -9,6 +9,7 @@
     flex-direction: column;
     margin: 20px;
     color: #4885a8;
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
 }
 
 .StockTicker {

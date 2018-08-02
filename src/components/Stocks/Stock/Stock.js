@@ -10,8 +10,8 @@ const stock = (props) => {
     return (
         <div className="Stock">
             <div className="StockTicker">{props.tickerSymbol}</div>
-            <div className="CurrentPrice">{props.latestPrice}</div>
-            <div className="OpenPrice">{props.openPrice}</div>
+            <div className="CurrentPrice">{props.latestPrice.toFixed(2)}</div>
+            <div className="OpenPrice">{props.openPrice.toFixed(2)}</div>
             <div className={["PercGain", percGain].join(' ')}>{percGainValue}%</div>
         </div>
     );

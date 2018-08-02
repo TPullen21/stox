@@ -104,7 +104,7 @@ class Stocks extends Component {
                 <div className="Stocks">
                     {stocks}
                 </div>
-                <footer className="Footer">Powered by iextrading.com</footer>
+                <footer className="Footer">API by iextrading.com</footer>
             </React.Fragment>
         );
     }

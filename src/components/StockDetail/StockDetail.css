@@ -1,5 +1,9 @@
-.StockContainer {
+.StockDetail-StockContainer {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+}
+
+.StockDetail-News {
+    margin-bottom: 80px;
 }

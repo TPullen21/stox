@@ -55,10 +55,10 @@ class StockDetail extends Component {
         }
 
         return (
-            <div className="StockDetail">
-                <div className="StockContainer">{stock}</div>
-                <div className="Chart"></div>
-                <div className="NewsItems">
+            <div className="StockDetail-Root">
+                <div className="StockDetail-StockContainer">{stock}</div>
+                <div className="StockDetail-Chart"></div>
+                <div className="StockDetail-News">
                     {news}
                 </div>
                 {footer}

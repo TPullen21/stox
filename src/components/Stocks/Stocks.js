@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import axios from '../../axios/axios-iextrading';
 import LocalStorage from '../../helpers/LocalStorage';
@@ -89,13 +89,25 @@ class Stocks extends Component {
 
     }
 
+    stockClickedHandler = ticker => {
+        this.props.history.push( '/' + ticker );
+    }
+
     render() {
 
         let stocks = null;
 
         if(this.state.stockDetail) {
             stocks = this.state.stockDetail.map(stock => {
-                return <Stock key={stock.ticker} tickerSymbol={stock.ticker} openPrice={stock.openPrice} latestPrice={stock.latestPrice}/>
+                return (
+                    <Stock
+                        key={stock.ticker}
+                        tickerSymbol={stock.ticker}
+                        openPrice={stock.openPrice}
+                        latestPrice={stock.latestPrice}
+                        clicked={() => this.stockClickedHandler(stock.ticker)}
+                    />
+                );
             });
         }
 

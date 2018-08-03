@@ -8,7 +8,7 @@ const stock = (props) => {
     const percGain = percGainValue >= 0 ? "Positive" : "Negative";
 
     return (
-        <div className="Stock">
+        <div className="Stock" onClick={props.clicked}>
             <div className="StockTicker">{props.tickerSymbol}</div>
             <div className="CurrentPrice">{props.latestPrice.toFixed(2)}</div>
             <div className="OpenPrice">{props.openPrice.toFixed(2)}</div>

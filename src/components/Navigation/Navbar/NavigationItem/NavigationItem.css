@@ -4,5 +4,6 @@ a.NavigationItem:visited {
     color: white;
 }
 a.NavigationItem {
+    color: white;
     text-decoration: none;
 }

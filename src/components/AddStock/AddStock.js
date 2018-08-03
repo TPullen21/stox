@@ -52,7 +52,7 @@ class AddStock extends Component {
     };
 
     stockInputChangedHandler = event => {
-        const text = Truncate(event.target.value.toUpperCase(), 10);
+        const text = Truncate(event.target.value.toUpperCase(), 8);
         this.setState({textInput: text});
         this.loadRelatedTickers();
     };

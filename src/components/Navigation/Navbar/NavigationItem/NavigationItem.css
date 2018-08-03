@@ -1,0 +1,8 @@
+a.NavigationItem:hover,
+a.NavigationItem:active,
+a.NavigationItem:visited {
+    color: white;
+}
+a.NavigationItem {
+    text-decoration: none;
+}

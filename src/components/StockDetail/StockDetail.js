@@ -30,8 +30,11 @@ class StockDetail extends Component {
         const { stockDetail } = this.state;
 
         let news = null;
+        let newsHeader = null;
 
         if (stockDetail.news && stockDetail.news.length) {
+            newsHeader = <div className="StockDetail-NewsHeader">News</div>;
+
             news = stockDetail.news.map((newsItem, index) => {
                 return <News
                     key={index}
@@ -70,7 +73,7 @@ class StockDetail extends Component {
                 <div className="StockDetail-StockContainer">{stock}</div>
                 <div className="StockDetail-ChartContainer">{chart}</div>
                 <div className="StockDetail-News">
-                    <div className="StockDetail-NewsHeader">News</div>
+                    {newsHeader}
                     {news}
                 </div>
                 {footer}

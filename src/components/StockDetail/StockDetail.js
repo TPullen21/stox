@@ -16,7 +16,9 @@ class StockDetail extends Component {
 
     componentDidMount() {
 
-        axios.get('TSLA/batch', {params: {symbols: 'TSLA', types: 'quote,chart,news', last:'5'}})
+        const ticker = this.props.match.params.id;
+
+        axios.get(ticker + '/batch', {params: {types: 'quote,chart,news', last:'5'}})
             .then(res => this.setState({stockDetail: res.data}))
             .catch(err => console.log(err));
 
@@ -24,10 +26,12 @@ class StockDetail extends Component {
 
     render () {
 
+        const { stockDetail } = this.state;
+
         let news = null;
 
-        if (this.state.stockDetail.news) {
-            news = this.state.stockDetail.news.map((newsItem, index) => {
+        if (stockDetail.news) {
+            news = stockDetail.news.map((newsItem, index) => {
                 return <News
                     key={index}
                     datetime={newsItem.datetime}
@@ -42,16 +46,17 @@ class StockDetail extends Component {
 
         let stock = null;
         let footer = null;
-
-        if (this.state.stockDetail.quote) {
+        
+        if (stockDetail.quote) {
             stock = <Stock 
-                        tickerSymbol={this.state.stockDetail.quote.symbol}
-                        latestPrice={this.state.stockDetail.quote.latestPrice}
-                        openPrice={this.state.stockDetail.quote.close}
+                        tickerSymbol={stockDetail.quote.symbol}
+                        latestPrice={stockDetail.quote.latestPrice}
+                        openPrice={stockDetail.quote.close}
                     />
 
             footer = <Footer
-                        companyName={this.state.stockDetail.quote.companyName} />
+                        companyName={stockDetail.quote.companyName}
+                        ticker={stockDetail.quote.symbol} />
         }
 
         return (

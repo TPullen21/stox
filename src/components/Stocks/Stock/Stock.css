@@ -10,6 +10,11 @@
     margin: 20px;
     color: #4885a8;
     font-family: -apple-system, 'Helvetica Neue', sans-serif;
+}
+
+.Hoverable:hover {
+    background-color: #70a4c2;
+    color: white;
     cursor: pointer;
 }
 

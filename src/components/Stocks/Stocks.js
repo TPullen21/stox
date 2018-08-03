@@ -106,6 +106,7 @@ class Stocks extends Component {
                         openPrice={stock.openPrice}
                         latestPrice={stock.latestPrice}
                         clicked={() => this.stockClickedHandler(stock.ticker)}
+                        hoverable
                     />
                 );
             });

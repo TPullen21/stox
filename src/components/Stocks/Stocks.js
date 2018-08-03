@@ -96,7 +96,7 @@ class Stocks extends Component {
     }
 
     stockClickedHandler = ticker => {
-        this.props.history.push( '/' + ticker );
+        this.props.history.push( '/stocks/' + ticker );
     }
 
     addStockClickedHandler = () => {

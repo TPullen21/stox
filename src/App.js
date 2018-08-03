@@ -8,6 +8,7 @@ import Layout from './hoc/Layout/Layout';
 import Stocks from './components/Stocks/Stocks';
 import AddStock from './components/AddStock/AddStock';
 import StockDetail from './components/StockDetail/StockDetail'
+import NotFound from './components/Error/NotFound/NotFound';
 
 class App extends Component {
   render() {
@@ -16,8 +17,9 @@ class App extends Component {
         <Layout>
           <Switch>
             <Route path="/add-stock" exact component={AddStock} />
-            <Route path="/:id" component={StockDetail} />
+            <Route path="/stocks/:id" component={StockDetail} />
             <Route path="/" exact component={Stocks} />
+            <Route path="/" component={NotFound} />
           </Switch>
         </Layout>
         <NotificationContainer/>

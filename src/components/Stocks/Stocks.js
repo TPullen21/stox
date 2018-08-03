@@ -3,13 +3,16 @@ import React, { Component } from 'react';
 import axios from '../../axios/axios-iextrading';
 import LocalStorage from '../../helpers/LocalStorage';
 import Stock from './Stock/Stock';
+import EmptyStock from './EmptyStock/EmptyStock';
+
 import './Stocks.css'
 
 class Stocks extends Component {
 
     state = {
         stocks: [],
-        stockDetail: []
+        stockDetail: [],
+        noStocks: false
     }
 
     myInterval = null;
@@ -30,6 +33,9 @@ class Stocks extends Component {
     
             //this.setWindowEventHandlers();
 
+        }
+        else {
+            this.setState({ noStocks: true });
         }
     }
 
@@ -93,11 +99,16 @@ class Stocks extends Component {
         this.props.history.push( '/' + ticker );
     }
 
+    addStockClickedHandler = () => {
+        this.props.history.push( '/add-stock' );
+    }
+
     render() {
 
         let stocks = null;
+        let noStocksMessage = null;
 
-        if(this.state.stockDetail) {
+        if(this.state.stockDetail && this.state.stockDetail.length) {
             stocks = this.state.stockDetail.map(stock => {
                 return (
                     <Stock
@@ -110,12 +121,21 @@ class Stocks extends Component {
                     />
                 );
             });
+        } else if (this.state.noStocks) {
+            stocks = <EmptyStock clicked={this.addStockClickedHandler}/>;
+
+            noStocksMessage = (
+                <div className="NoStocksMessage">Welcome to Stox, a stock tracker and viewing tool. To get started add a stock below!</div>
+            );
         }
 
         return (
             <React.Fragment>
                 <div className="Stocks">
-                    {stocks}
+                    {noStocksMessage}
+                    <div className="Stocks-Container">
+                        {stocks}
+                    </div>
                 </div>
                 <footer className="Footer">API by iextrading.com</footer>
             </React.Fragment>

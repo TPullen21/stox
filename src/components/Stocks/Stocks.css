@@ -1,4 +1,9 @@
-.Stocks {
+.NoStocksMessage {
+    margin-top: 40px;
+    padding: 0px 20px;
+}
+
+.Stocks-Container {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;

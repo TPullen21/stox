@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import axios from '../../axios/axios-iextrading';
 
 import Stock from '../Stocks/Stock/Stock';
+import Chart from './Chart/Chart';
 import News from './News/News';
 import Footer from './Footer/Footer';
 
@@ -59,10 +60,15 @@ class StockDetail extends Component {
                         ticker={stockDetail.quote.symbol} />
         }
 
+        let chart = null;
+        if (stockDetail.chart) {
+            chart = <Chart chartData={stockDetail.chart}/>;
+        }
+
         return (
             <div className="StockDetail-Root">
                 <div className="StockDetail-StockContainer">{stock}</div>
-                <div className="StockDetail-Chart"></div>
+                <div className="StockDetail-Chart">{chart}</div>
                 <div className="StockDetail-News">
                     <div className="StockDetail-NewsHeader">News</div>
                     {news}

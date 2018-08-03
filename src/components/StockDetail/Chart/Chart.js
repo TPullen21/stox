@@ -14,19 +14,14 @@ const dataSet = {
 const options = {
     responsive: true,
     maintainAspectRatio: false,
-    title: {
-        display: true,
-        text: 'Chart.js Time Point Data'
+    legend: {
+        display: false
     },
     scales: {
         xAxes: [{
             type: 'time',
             distribution: 'series',
             display: true,
-            scaleLabel: {
-                display: true,
-                labelString: 'Date'
-            },
             ticks: {
                 major: {
                     fontStyle: 'bold',
@@ -35,12 +30,13 @@ const options = {
             }
         }],
         yAxes: [{
-            display: true,
-            scaleLabel: {
-                display: true,
-                labelString: 'value'
-            }
+            display: true
         }]
+    },
+    elements: {
+        line: {
+            tension: 0.00001
+        }
     }
 };
 

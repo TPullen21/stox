@@ -68,7 +68,7 @@ class StockDetail extends Component {
         return (
             <div className="StockDetail-Root">
                 <div className="StockDetail-StockContainer">{stock}</div>
-                <div className="StockDetail-Chart">{chart}</div>
+                <div className="StockDetail-ChartContainer">{chart}</div>
                 <div className="StockDetail-News">
                     <div className="StockDetail-NewsHeader">News</div>
                     {news}

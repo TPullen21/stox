@@ -33,7 +33,7 @@ class AddStock extends Component {
     componentDidMount() {
         firebase.get('securities.json')
             .then(response => this.securities = response.data)
-            .catch(err => console.log(err));
+            .catch(err => console.error(err));
 
         this.storedSecurities = LocalStorage.getStocks();
     }

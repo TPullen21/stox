@@ -15,7 +15,7 @@ class Footer extends Component {
 
     componentDidMount() {
         const { ticker } = this.props;
-        console.log(ticker);
+        
         if ( ticker ) {
             this.setState({ stored: _.includes(LocalStorage.getStocks(), ticker), ticker: ticker });
 

@@ -21,7 +21,18 @@ class StockDetail extends Component {
 
         axios.get(ticker + '/batch', {params: {types: 'quote,chart,news', last:'5'}})
             .then(res => this.setState({stockDetail: res.data}))
-            .catch(err => console.log(err));
+            .catch(err => this.processError(err));
+
+    }
+
+    processError = err => {
+
+        if (err.response && err.response.status) {
+            this.props.history.push('/NotFound');
+        }
+        else {
+            console.error(err);
+        }
 
     }
 

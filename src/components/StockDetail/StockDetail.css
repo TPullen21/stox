@@ -7,3 +7,10 @@
 .StockDetail-News {
     margin-bottom: 80px;
 }
+
+.StockDetail-NewsHeader {
+    font-size: 32px;
+    font-weight: bold;
+    color: #36637d;
+    margin-bottom: 20px;
+}

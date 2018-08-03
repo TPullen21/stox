@@ -3,24 +3,26 @@ import Moment from 'react-moment';
 
 import './News.css'
 
+const openNewsUrlInNewTab = url => {
+    const win = window.open(url, '_blank');
+    win.focus();
+}
+
 const news = (props) => {
 
     const relativeTime = props.datetime;
 
-    let summary = props.summary;
-    let articleUrl = <a href={props.url} target="__blank">Read more</a>;
+    let { summary } = props;
 
     if(summary && summary.startsWith('No summ')) {
-        summary = articleUrl;
-        articleUrl = null;
+        summary = null;
     }
 
     return (
-        <div className="News">
+        <div className="News" onClick={() => openNewsUrlInNewTab(props.url)}>
             <div className="Source">{props.source} • <Moment fromNow>{relativeTime}</Moment></div>
             <div className="Headline">{props.headline}</div>
             <div className="Summary">{summary}</div>
-            <div className="ArticleUrl">{articleUrl}</div>
         </div>
     );
 
